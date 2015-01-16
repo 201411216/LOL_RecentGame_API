@@ -33,7 +33,8 @@ public class RecentGameUriBuilder extends BaseUriBuilder {
      */
     @Override
     public RecentGameUriBuilder reigon(String reigonStr) {
-        return (RecentGameUriBuilder) super.reigon(reigonStr);
+        super.reigon(reigonStr);
+        return this;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.lee.zun.lol_recentgame_api;
 
 import com.google.gson.annotations.SerializedName;
+import com.lee.zun.lol_recentgame_api.data.recent.RawStatsDto;
 
 import java.util.List;
 

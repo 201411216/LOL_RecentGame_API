@@ -112,8 +112,6 @@ public class RecentGameFragment {
                 .build();
 
         Gson recentGameInfo = new Gson();
-
-
-
+        return null;
     }
 }
