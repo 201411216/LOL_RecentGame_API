@@ -3,13 +3,17 @@ package com.lee.zun.lol_recentgame_api;
 import android.net.Uri;
 
 import com.google.gson.Gson;
+import com.lee.zun.lol_recentgame_api.api.RiotApi;
+import com.lee.zun.lol_recentgame_api.api.SummonerUriBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,6 +27,17 @@ import java.util.List;
 
 
 public class RecentGameFragment {
+
+    public void getSummonerID(){
+        try {
+            Response response =  RiotApi.newInstance().getResponceFromBuilder(
+                    new SummonerUriBuilder().reigon("kr").byName().summonerName("test"));
+            String result = response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public java.net.URL getSummonerIDURL() {
 
