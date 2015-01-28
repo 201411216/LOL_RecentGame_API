@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.*;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -57,6 +58,8 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            android.widget.ListAdapter mlolAdapter;
+            mlolAdapter = new ListAdapter(getActivity());
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }

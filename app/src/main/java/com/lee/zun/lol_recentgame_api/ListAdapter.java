@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.lee.zun.lol_recentgame_api.data.recent.GameDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,8 +23,8 @@ public class ListAdapter extends BaseAdapter {
     public String TAG = "ListAdapter";
 
 
-    public ListAdapter(Context tContext, List<GameDto> dataset) {
-        mDataset = dataset;
+    public ListAdapter(Context tContext) {
+        mDataset = new ArrayList<GameDto>();
         mContext = tContext;
     }
 
@@ -64,13 +65,14 @@ public class ListAdapter extends BaseAdapter {
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-
         }
-
-
         return convertView;
     }
 
+    public void addItem(GameDto data){
+        mDataset.add(data);
+        notifyDataSetChanged();
+    }
 
     public static class ViewHolder {
         public ImageView champion0;
