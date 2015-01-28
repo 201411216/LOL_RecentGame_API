@@ -8,7 +8,7 @@ import java.util.List;
 public class GameDto {
     private int championId;
     private long createDate;
-    private List<PlayerDto> fellowPlayers;
+    private List<PlayersDto> fellowPlayers;
     private long gameId;
     private String gameMode;
     private String gameType;
@@ -30,7 +30,7 @@ public class GameDto {
         return createDate;
     }
 
-    public List<PlayerDto> getFellowPlayers() {
+    public List<PlayersDto> getFellowPlayers() {
         return fellowPlayers;
     }
 

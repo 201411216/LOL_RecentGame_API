@@ -94,8 +94,8 @@ public class SummonerUriBuilder extends BaseUriBuilder {
      * @return This class (Support method chaining)
      */
     @Override
-    public SummonerUriBuilder reigon(String reigonStr) {
-        super.reigon(reigonStr);
+    public SummonerUriBuilder region(String reigonStr) {
+        super.region(reigonStr);
         return this;
     }
 

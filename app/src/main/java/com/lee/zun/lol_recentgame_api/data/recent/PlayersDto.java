@@ -3,7 +3,7 @@ package com.lee.zun.lol_recentgame_api.data.recent;
 /**
  * Created by Namhyun, Gu on 2015-01-15.
  */
-public class PlayerDto {
+public class PlayersDto {
     private int championId;
     private long summonerId;
     private int teamId;

@@ -1,10 +1,15 @@
 package com.lee.zun.lol_recentgame_api;
 
 import android.net.Uri;
+import android.os.AsyncTask;
 
 import com.google.gson.Gson;
+import com.lee.zun.lol_recentgame_api.api.BaseUriBuilder;
+import com.lee.zun.lol_recentgame_api.api.GameUriBuilder;
 import com.lee.zun.lol_recentgame_api.api.RiotApi;
 import com.lee.zun.lol_recentgame_api.api.SummonerUriBuilder;
+import com.lee.zun.lol_recentgame_api.data.recent.RecentGamesDto;
+import com.lee.zun.lol_recentgame_api.data.recent.SummonerIdDto;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -14,8 +19,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,106 +30,77 @@ import java.util.List;
 
 
 public class RecentGameFragment {
+    List<SummonerIdDto> summonerIdDtos = new ArrayList<SummonerIdDto>();
+    RecentGamesDto recentGame = new RecentGamesDto();
 
-    public void getSummonerID(){
+    final String thezun = "The Zun";
+
+    public void getSummonerID(String thezun) {
         try {
-            Response response =  RiotApi.newInstance().getResponceFromBuilder(
-                    new SummonerUriBuilder().reigon("kr").byName().summonerName("test"));
+            String summonerIdStr = thezun;
+            Response response = RiotApi.newInstance().getResponceFromBuilder(
+                    new SummonerUriBuilder().region("kr").byName().summonerName(thezun));
             String result = response.body().string();
+            JSONObject resultJson = new JSONObject();
+            JSONArray resultJsonArray = resultJson.getJSONArray(thezun);
+            long idLong = 0;
+            String nameStr;
+            int profileIconIdInt = 0;
+            long revisionDateLong = 0;
+            long summonerLevelLong = 0;
+            for (int i = 0; i < resultJsonArray.length(); i++) {
+
+                JSONObject resultObject = resultJsonArray.getJSONObject(i);
+                idLong = Long.getLong(resultObject.getString("id"));
+                nameStr = resultObject.getString("name");
+                profileIconIdInt = Integer.getInteger(resultObject.getString("profileIconId"));
+                revisionDateLong = Long.getLong(resultObject.getString("revisionDate"));
+                summonerLevelLong = Long.getLong(resultObject.getString("summonerLevel"));
+                summonerIdDtos.add(new SummonerIdDto(summonerIdStr, idLong, nameStr, profileIconIdInt, revisionDateLong, summonerLevelLong));
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getRecentGame() {
+        long summonerIdLong = summonerIdDtos.get(0).getId();
+
+        try {
+
+            Response response = RiotApi.newInstance().getResponceFromBuilder(
+                    new GameUriBuilder().region("kr").summonerId(summonerIdLong));
+            String result = response.body().string();
+
+            Gson gson = new Gson();
+            recentGame = gson.fromJson(result, RecentGamesDto.class);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public class lolTask extends AsyncTask<BaseUriBuilder, Void, String> {
 
-    public java.net.URL getSummonerIDURL() {
-
-        String _REGION = "kr";
-        String LOL_VERSION = "v1.4";
-        String SUMMONER = "summoner";
-        String BY_NAME = "by-name";
-        String USERNAME = "The Zun";
-        String API_KEY = "dba2bb91-3fa9-4c56-8bc7-976deed149fe";
-        Uri buildSummonerIDUri = Uri.parse("https://kr.api.pvp.net/api/lol").buildUpon()
-                .appendPath(_REGION)
-                .appendPath(LOL_VERSION)
-                .appendPath(SUMMONER)
-                .appendPath(BY_NAME)
-                .appendPath(USERNAME)
-                .appendQueryParameter("api-key", API_KEY).build();
-
-        URL summonerIDURL = null;
-
-        try {
-            summonerIDURL = new URL(buildSummonerIDUri.toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        return summonerIDURL;
-
-    }
-
-    public int getSummonerUserID(String idJSONStr) {
-
-        int resultID = 0;
-
-        try {
-            JSONObject idJSONObject = new JSONObject(idJSONStr);
-            JSONArray idJSONARRAY = idJSONObject.getJSONArray("The Zun");
-            for (int i = 0; i < idJSONARRAY.length(); i++) {
-                JSONObject resultObject = idJSONARRAY.getJSONObject(i);
-                resultID = resultObject.getInt("id");
+        @Override
+        protected String doInBackground(BaseUriBuilder... params) {
+            OkHttpClient okHttpClient = new OkHttpClient();
+            Response response = null;
+            String result = null;
+            try {
+                Request request = new Request.Builder()
+                        .url(params[0].getURL())
+                        .build();
+                response = okHttpClient.newCall(request).execute();
+                result = response.body().string();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } finally {
-            return resultID;
+            return result;
         }
-
-    }
-
-    public java.net.URL getRecentGameURL(int _id) {
-
-        String _REGION = "kr";
-        String LOL_VERSION = "v1.3";
-        String _GAME = "game";
-        String _BYSUMMONER = "by-summoner";
-        String _ID = String.valueOf(_id);
-        String API_KEY = "dba2bb91-3fa9-4c56-8bc7-976deed149fe";
-
-        Uri buildRecentGameUri = Uri.parse("https://kr.api.pvp.net/api/lol").buildUpon()
-                .appendPath(_REGION)
-                .appendPath(LOL_VERSION)
-                .appendPath(_GAME)
-                .appendPath(_BYSUMMONER)
-                .appendPath(_ID)
-                .appendQueryParameter("api_key", API_KEY).build();
-
-        URL recentGameURL = null;
-
-        try {
-            recentGameURL = new URL(buildRecentGameUri.toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        return recentGameURL;
-
-    }
-
-    public List<RecentGameContainer> getRecentGameInfo(String gameInfoJSONStr) {
-        List<RecentGameContainer> recentGameList = new ArrayList<>();
-        String summonerIdURL = getSummonerIDURL().toString();
-        int summonerID = getSummonerUserID(summonerIdURL);
-        URL recentGameURL = getRecentGameURL(summonerID);
-
-        OkHttpClient okHttpClient = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(recentGameURL)
-                .build();
-
-        Gson recentGameInfo = new Gson();
-        return null;
     }
 }
