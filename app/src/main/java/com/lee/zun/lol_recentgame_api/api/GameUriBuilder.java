@@ -29,12 +29,12 @@ public class GameUriBuilder extends BaseUriBuilder {
     /**
      * Set reigon id in path
      *
-     * @param reigonStr Reigon string (br, eune, enw, kr ... etc)
+     * @param regionStr Reigon string (br, eune, enw, kr ... etc)
      * @return This class (Support method chaining)
      */
     @Override
-    public GameUriBuilder reigon(String reigonStr) {
-        super.reigon(reigonStr);
+    public GameUriBuilder region(String regionStr) {
+        super.region(regionStr);
         return this;
     }
 

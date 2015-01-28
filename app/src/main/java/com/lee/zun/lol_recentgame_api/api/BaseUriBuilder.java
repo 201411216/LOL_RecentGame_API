@@ -9,7 +9,7 @@ import java.net.URL;
  * Created by Namhyun, Gu on 2015-01-15.
  */
 public class BaseUriBuilder {
-    private String reigonStr = null;
+    private String regionStr = null;
 
     /**
      * Set reigon in path
@@ -17,8 +17,8 @@ public class BaseUriBuilder {
      * @param reigonStr Reigon string (br, eune, enw, kr ... etc)
      * @return This class (Support method chaining)
      */
-    public BaseUriBuilder reigon(String reigonStr) {
-        this.reigonStr = reigonStr;
+    public BaseUriBuilder region(String reigonStr) {
+        this.regionStr = regionStr;
         return this;
     }
 
@@ -41,10 +41,10 @@ public class BaseUriBuilder {
      * @return Uri.Builder
      */
     public Uri.Builder getBuilder() {
-        if (reigonStr == null) {
+        if (regionStr == null) {
             return null;
         }
-        return Uri.parse(String.format(Config.BASE_URL, reigonStr, reigonStr)).buildUpon();
+        return Uri.parse(String.format(Config.BASE_URL, regionStr, regionStr)).buildUpon();
     }
 
     /**
