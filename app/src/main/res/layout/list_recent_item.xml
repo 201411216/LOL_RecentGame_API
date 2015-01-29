@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
+    android:layout_height="@dimen/list_two_line_height"
     android:orientation="horizontal">
 
     <ImageView
@@ -9,13 +9,13 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="@dimen/keyline_first"
         android:src="@drawable/ic_launcher" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="72dp"
+        android:layout_marginLeft="@dimen/keyline_second"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -24,16 +24,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="승 (1/0/1)"
-            android:textColor="#87000000"
+            android:textColor="@color/black_alpha_87"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/game_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/text_line_spacing"
             android:text="일반"
-            android:textColor="#54000000"
+            android:textColor="@color/black_alpha_54"
             android:textSize="14sp" />
 
     </LinearLayout>
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="@dimen/keyline_first"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -52,16 +52,14 @@
             android:orientation="vertical">
 
             <ImageView
+                style="@style/AppTheme.List.ItemImage"
                 android:id="@+id/spell1"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="#000000"/>
+                android:src="#000000" />
 
             <ImageView
+                style="@style/AppTheme.List.ItemImage"
                 android:id="@+id/spell2"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="#000000"/>
+                android:src="#000000" />
 
         </LinearLayout>
 
@@ -76,22 +74,19 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    style="@style/AppTheme.List.ItemImage"
                     android:id="@+id/item0"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
                     android:src="#90000000" />
 
                 <ImageView
+                    style="@style/AppTheme.List.ItemImage"
                     android:id="@+id/item1"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
                     android:src="#80000000" />
 
                 <ImageView
+                    style="@style/AppTheme.List.ItemImage"
                     android:id="@+id/item2"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="#70000000"/>
+                    android:src="#70000000" />
 
             </LinearLayout>
 
@@ -101,33 +96,29 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    style="@style/AppTheme.List.ItemImage"
                     android:id="@+id/item3"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="#60000000"/>
+                    android:src="#60000000" />
 
                 <ImageView
+                    style="@style/AppTheme.List.ItemImage"
                     android:id="@+id/item4"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="#50000000"/>
+                    android:src="#50000000" />
 
                 <ImageView
+                    style="@style/AppTheme.List.ItemImage"
                     android:id="@+id/item5"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="#40000000"/>
+                    android:src="#40000000" />
 
             </LinearLayout>
 
         </LinearLayout>
 
         <ImageView
+            style="@style/AppTheme.List.ItemImage"
             android:id="@+id/item6"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
             android:layout_gravity="center_vertical"
-            android:src="#30000000"/>
+            android:src="#30000000" />
 
     </LinearLayout>
 </RelativeLayout>
