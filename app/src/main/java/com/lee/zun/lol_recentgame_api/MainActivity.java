@@ -75,7 +75,10 @@ public class MainActivity extends ActionBarActivity {
             mAdapter = new ListAdapter(getActivity());
             mListView = (ListView) rootView.findViewById(R.id.list_recentGameFragment);
             mListView.setAdapter(mAdapter);
-            new RequestTask().execute(new SummonerUriBuilder().region("kr").byName().summonerName("The Zun"));
+//            new RequestTask().execute(new SummonerUriBuilder().region("kr").byName().summonerName("The Zun"));
+            for (int i = 0; i < 10; i++) {
+                mAdapter.addItem(new GameDto());
+            }
             return rootView;
         }
 
@@ -101,6 +104,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
+
             }
         }
     }
