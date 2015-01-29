@@ -22,7 +22,7 @@ public class RawStatsDto {
     public int item4;
     public int item5;
     public int item6;
-    public int iemPurchased;
+    public int itemPurchased;
     public int killingSprees;
     public int largestCriticalStrike;
     public int largestKillingSpree;
@@ -137,8 +137,8 @@ public class RawStatsDto {
         return item6;
     }
 
-    public int getIemPurchased() {
-        return iemPurchased;
+    public int getItemPurchased() {
+        return itemPurchased;
     }
 
     public int getKillingSprees() {

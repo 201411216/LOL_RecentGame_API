@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +20,6 @@ public class ListAdapter extends BaseAdapter {
     private Context mContext;
     private List<GameDto> mDataset;
     public String TAG = "ListAdapter";
-
 
     public ListAdapter(Context tContext) {
         mDataset = new ArrayList<GameDto>();
@@ -48,7 +46,7 @@ public class ListAdapter extends BaseAdapter {
         ViewHolder viewHolder = new ViewHolder();
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.list_recent_item, parent, false);
-            viewHolder.champion0 = (ImageView) convertView.findViewById(R.id.champion0);
+            viewHolder.champion0 = (ImageView) convertView.findViewById(R.id.champion_id);
             viewHolder.item0 = (ImageView) convertView.findViewById(R.id.item0);
             viewHolder.item1 = (ImageView) convertView.findViewById(R.id.item1);
             viewHolder.item2 = (ImageView) convertView.findViewById(R.id.item2);
@@ -58,18 +56,28 @@ public class ListAdapter extends BaseAdapter {
             viewHolder.item6 = (ImageView) convertView.findViewById(R.id.item6);
             viewHolder.spell1 = (ImageView) convertView.findViewById(R.id.spell1);
             viewHolder.spell2 = (ImageView) convertView.findViewById(R.id.spell2);
-            viewHolder.gametype_result = (TextView) convertView.findViewById(R.id.gametype_result);
+            viewHolder.gametype_result = (TextView) convertView.findViewById(R.id.game_result);
             viewHolder.kda_score = (TextView) convertView.findViewById(R.id.kda_score);
             viewHolder.gold_ward_creepscore = (TextView) convertView.findViewById(R.id.gold_ward_creepscore);
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
+            GameDto data = mDataset.get(position);
+            viewHolder.gametype_result.setText(data.getGameType());
+            viewHolder.gametype_result.append(data.get...);
+            viewHolder.kda_score.setText(String.valueOf(data.getStats().getChampionsKilled()));
+            viewHolder.kda_score.append(String.valueOf(data.getStats().getAssists()));
+            viewHolder.kda_score.append(String.valueOf(data.getStats().getNumDeaths()));
+            viewHolder.gold_ward_creepscore.setText(String.valueOf(data.getStats().getGold()));
+            viewHolder.gold_ward_creepscore.append(String.valueOf(data.getStats().getWardPlaced()));
+            viewHolder.gold_ward_creepscore.append(String.valueOf(data.getStats().getMinionsKilled()+data.getStats().getNeutralMinionsKilled()));
+
         }
         return convertView;
     }
 
-    public void addItem(GameDto data){
+    public void addItem(GameDto data) {
         mDataset.add(data);
         notifyDataSetChanged();
     }

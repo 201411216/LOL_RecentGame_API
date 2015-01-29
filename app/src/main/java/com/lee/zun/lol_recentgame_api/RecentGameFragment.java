@@ -84,23 +84,5 @@ public class RecentGameFragment {
         }
     }
 
-    public class lolTask extends AsyncTask<BaseUriBuilder, Void, String> {
 
-        @Override
-        protected String doInBackground(BaseUriBuilder... params) {
-            OkHttpClient okHttpClient = new OkHttpClient();
-            Response response = null;
-            String result = null;
-            try {
-                Request request = new Request.Builder()
-                        .url(params[0].getURL())
-                        .build();
-                response = okHttpClient.newCall(request).execute();
-                result = response.body().string();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return result;
-        }
-    }
 }
