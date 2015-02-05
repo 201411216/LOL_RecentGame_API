@@ -75,23 +75,22 @@ public class MainActivity extends ActionBarActivity {
             mAdapter = new ListAdapter(getActivity());
             mListView = (ListView) rootView.findViewById(R.id.list_recentGameFragment);
             mListView.setAdapter(mAdapter);
-//            new RequestTask().execute(new SummonerUriBuilder().region("kr").byName().summonerName("The Zun"));
             for (int i = 0; i < 10; i++) {
                 mAdapter.addItem(new GameDto());
             }
             return rootView;
         }
 
-        public class RequestTask extends AsyncTask<BaseUriBuilder, Void, String> {
+        public class RequestTask extends AsyncTask<String, Void, String> {
 
             @Override
-            protected String doInBackground(BaseUriBuilder... params) {
+            protected String doInBackground(String... params) {
                 OkHttpClient okHttpClient = new OkHttpClient();
                 Response response = null;
                 String result = null;
                 try {
                     Request request = new Request.Builder()
-                            .url(params[0].getURL())
+                            .url(new SummonerUriBuilder().region("kr").byName().summonerName(params[0]).getURL())
                             .build();
                     response = okHttpClient.newCall(request).execute();
                     result = response.body().string();
