@@ -8,6 +8,27 @@
         <item name="colorAccent">#64DD17</item>
     </style>
 
+    <style name="AppTheme.Search" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/search_color_primary</item>
+        <item name="colorPrimaryDark">@color/search_color_primaryDark</item>
+        <item name="colorAccent">@color/search_color_accent</item>
+    </style>
+
+    <style name="AppTheme.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:minWidth">@dimen/button_min_width</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:paddingLeft">@dimen/button_internal_padding</item>
+        <item name="android:paddingRight">@dimen/button_internal_padding</item>
+        <item name="android:layout_marginLeft">@dimen/button_external_padding</item>
+        <item name="android:layout_marginRight">@dimen/button_external_padding</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="AppTheme.Button.Search">
+        <item name="android:textColor">@color/search_color_accent</item>
+    </style>
+
     <style name="AppTheme.List"></style>
 
     <style name="AppTheme.List.ItemImage">

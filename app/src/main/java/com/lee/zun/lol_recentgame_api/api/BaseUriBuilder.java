@@ -9,16 +9,16 @@ import java.net.URL;
  * Created by Namhyun, Gu on 2015-01-15.
  */
 public class BaseUriBuilder {
-    private String regionStr = null;
+    private String mRegionStr = null;
 
     /**
      * Set reigon in path
      *
-     * @param reigonStr Reigon string (br, eune, enw, kr ... etc)
+     * @param regionStr Reigon string (br, eune, enw, kr ... etc)
      * @return This class (Support method chaining)
      */
-    public BaseUriBuilder region(String reigonStr) {
-        this.regionStr = regionStr;
+    public BaseUriBuilder region(String regionStr) {
+        this.mRegionStr = regionStr;
         return this;
     }
 
@@ -41,10 +41,10 @@ public class BaseUriBuilder {
      * @return Uri.Builder
      */
     public Uri.Builder getBuilder() {
-        if (regionStr == null) {
+        if (mRegionStr == null) {
             return null;
         }
-        return Uri.parse(String.format(Config.BASE_URL, regionStr, regionStr)).buildUpon();
+        return Uri.parse(String.format(Config.BASE_URL, mRegionStr, mRegionStr)).buildUpon();
     }
 
     /**

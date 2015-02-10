@@ -4,5 +4,10 @@
     <string name="app_name">LOL_RecentGame_API</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_serach">Search</string>
+    <string name="action_search_hint">Input summoner name</string>
+    <string name="result_error">Can\'t fetch result</string>
+    <string name="result_search_again">Search again</string>
+    <string name="result_select">Select</string>
 
 </resources>

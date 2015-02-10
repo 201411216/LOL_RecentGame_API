@@ -9,4 +9,10 @@
 
     <dimen name="list_two_line_height">72dp</dimen>
     <dimen name="text_line_spacing">4dp</dimen>
+
+    <dimen name="button_min_width">64dp</dimen>
+    <dimen name="button_height">36dp</dimen>
+    <dimen name="button_external_padding">4dp</dimen>
+    <dimen name="button_internal_padding">8dp</dimen>
+    
 </resources>
