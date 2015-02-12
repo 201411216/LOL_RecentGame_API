@@ -90,12 +90,12 @@ public class SummonerUriBuilder extends BaseUriBuilder {
     /**
      * Set reigon id in path
      *
-     * @param reigonStr Reigon string (br, eune, enw, kr ... etc)
+     * @param regionStr Reigon string (br, eune, enw, kr ... etc)
      * @return This class (Support method chaining)
      */
     @Override
-    public SummonerUriBuilder region(String reigonStr) {
-        super.region(reigonStr);
+    public SummonerUriBuilder region(String regionStr) {
+        super.region(regionStr);
         return this;
     }
 

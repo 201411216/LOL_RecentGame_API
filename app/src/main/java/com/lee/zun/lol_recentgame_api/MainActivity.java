@@ -1,5 +1,7 @@
 package com.lee.zun.lol_recentgame_api;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,12 +11,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.ListView;
+import android.widget.Toast;
 
-import com.lee.zun.lol_recentgame_api.api.BaseUriBuilder;
-import com.lee.zun.lol_recentgame_api.api.GameUriBuilder;
 import com.lee.zun.lol_recentgame_api.api.SummonerUriBuilder;
 import com.lee.zun.lol_recentgame_api.data.recent.GameDto;
+import com.lee.zun.lol_recentgame_api.data.summoner.SummonerIdDto;
+import com.lee.zun.lol_recentgame_api.ui.SearchActivity;
+import com.lee.zun.lol_recentgame_api.ui.SearchFragment;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -53,9 +57,29 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.action_search) {
+            startActivityForResult(
+                    new Intent(this, SearchActivity.class), SearchFragment.REQUEST_DATA_CODE);
+            return true;
         }
-
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == SearchFragment.REQUEST_DATA_CODE){
+            if(resultCode == SearchFragment.RESULT_DATA_EXIST){
+                SummonerIdDto result = data.getParcelableExtra(SearchFragment.RESULT_KEY);
+                if(result != null) {
+                    Toast.makeText(this,
+                            "Returned " + result.getName() + ", " + result.getSummonerLevel(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            } else if(resultCode == Activity.RESULT_CANCELED){
+                Toast.makeText(this, "Returned null data", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     /**

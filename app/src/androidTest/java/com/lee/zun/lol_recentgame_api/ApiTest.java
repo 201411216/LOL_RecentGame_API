@@ -5,7 +5,6 @@ import android.test.AndroidTestCase;
 import android.util.Log;
 
 import com.lee.zun.lol_recentgame_api.api.Config;
-import com.lee.zun.lol_recentgame_api.api.GameUriBuilder;
 import com.lee.zun.lol_recentgame_api.api.SummonerUriBuilder;
 
 /**
@@ -36,28 +35,10 @@ public class ApiTest extends AndroidTestCase {
         String expectedValue6
                 = "https://kr.api.pvp.net/api/lol/kr/v1.4/summoner/100/runes?api_key=" + Config.API_KEY;
 
-        Uri uri = new GameUriBuilder().reigon("kr").summonerId(100).build();
-        Log.d(LOG_TAG, uri.toString());
-        assertEquals(expectedValue1, uri.toString());
-
-        uri = new SummonerUriBuilder().reigon("kr").byName().summonerName("test").build();
-        Log.d(LOG_TAG, uri.toString());
-        assertEquals(expectedValue2, uri.toString());
-
-        uri = new SummonerUriBuilder().reigon("kr").summonerIds("100").build();
-        Log.d(LOG_TAG, uri.toString());
-        assertEquals(expectedValue3, uri.toString());
-
-        uri = new SummonerUriBuilder().reigon("kr").summonerIds("100").requestMasteries().build();
-        Log.d(LOG_TAG, uri.toString());
-        assertEquals(expectedValue4, uri.toString());
-
-        uri = new SummonerUriBuilder().reigon("kr").summonerIds("100").requestName().build();
-        Log.d(LOG_TAG, uri.toString());
-        assertEquals(expectedValue5, uri.toString());
-
-        uri = new SummonerUriBuilder().reigon("kr").summonerIds("100").requestRunes().build();
-        Log.d(LOG_TAG, uri.toString());
-        assertEquals(expectedValue6, uri.toString());
+        Uri uri = new SummonerUriBuilder().region("kr").byName().summonerName("test").build();
+        Log.d("ApiTest", uri.toString());
+        if(!uri.toString().equals(expectedValue2)){
+            fail();
+        }
     }
 }

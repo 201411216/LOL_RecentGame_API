@@ -1,17 +1,11 @@
 package com.lee.zun.lol_recentgame_api;
 
-import android.net.Uri;
-import android.os.AsyncTask;
-
 import com.google.gson.Gson;
-import com.lee.zun.lol_recentgame_api.api.BaseUriBuilder;
 import com.lee.zun.lol_recentgame_api.api.GameUriBuilder;
 import com.lee.zun.lol_recentgame_api.api.RiotApi;
 import com.lee.zun.lol_recentgame_api.api.SummonerUriBuilder;
 import com.lee.zun.lol_recentgame_api.data.recent.RecentGamesDto;
-import com.lee.zun.lol_recentgame_api.data.recent.SummonerIdDto;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
+import com.lee.zun.lol_recentgame_api.data.summoner.SummonerIdDto;
 import com.squareup.okhttp.Response;
 
 import org.json.JSONArray;
@@ -56,8 +50,7 @@ public class RecentGameFragment {
                 profileIconIdInt = Integer.getInteger(resultObject.getString("profileIconId"));
                 revisionDateLong = Long.getLong(resultObject.getString("revisionDate"));
                 summonerLevelLong = Long.getLong(resultObject.getString("summonerLevel"));
-                summonerIdDtos.add(new SummonerIdDto(summonerIdStr, idLong, nameStr, profileIconIdInt, revisionDateLong, summonerLevelLong));
-
+                //summonerIdDtos.add(new SummonerIdDto(summonerIdStr, idLong, nameStr, profileIconIdInt, revisionDateLong, summonerLevelLong));
             }
 
         } catch (IOException e) {
