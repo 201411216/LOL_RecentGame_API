@@ -95,7 +95,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                String queryText = s.toLowerCase().trim();
+                String queryText = s.toLowerCase().trim().replace(" ", "");
                 new SummonerRequestTask().execute("kr", queryText);
                 MenuItemCompat.collapseActionView(searchItem);
                 getActivity().setTitle(queryText);
